@@ -31,6 +31,6 @@ jobs:
       run: sh bin/git-workflow-parameters-update.sh && cat .env.local
 
     - name: Docker PHP Apache and Running Symfony Basic Test
-      run: docker exec php_apache /bin/sh -c " cd simple-login &&  sh ./bin/git-workflow-symfony-basic.sh"
+      run: docker exec php_apache bash -c " cd simple-login &&  sh ./bin/git-workflow-symfony-basic.sh"
 
 
