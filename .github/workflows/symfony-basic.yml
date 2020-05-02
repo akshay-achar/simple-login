@@ -28,7 +28,7 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Update the Parameters 
-      run: sh bin/git-workflow-parameters-update.sh && cp .env.local
+      run: sh bin/git-workflow-parameters-update.sh && cat .env.local
 
     # Runs a single command using the runners shell
     - name: Run a Composer Install
