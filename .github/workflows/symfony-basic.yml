@@ -30,6 +30,9 @@ jobs:
     - name: Update the Parameters
       run: sh bin/git-workflow-parameters-update.sh && cat .env.local
 
+    - name: Print the Current Working Directory in Docker
+      run: docker exec php_apache sh -c "pwd"
+
     - name: Docker PHP Apache and Running Symfony Basic Test
       run: docker exec php_apache bash -c " cd simple-login &&  sh ./bin/git-workflow-symfony-basic.sh"
 
