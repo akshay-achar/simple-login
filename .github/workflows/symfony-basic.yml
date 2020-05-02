@@ -22,9 +22,6 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    - name: Print the Current Working Directory
-      run: pwd
-
   # Runs a single command using the runners shell
     - name: Docker Setup
       run: cd .. && git clone https://github.com/akshay-achar/docker-setup.git && cd docker-setup && docker build . --file Dockerfile --tag my-image-name:$(date +%s) && mkdir project && mkdir mongo_dump && mkdir mysql_dump && docker-compose up -d && docker ps
@@ -34,10 +31,7 @@ jobs:
       run: sh bin/git-workflow-parameters-update.sh && cat .env.local
 
     - name: Copy the Project into the Docker Project Folder
-      run: ls && cp -r ../simple-login ../docker-setup/project/
-
-    - name: Print the Current Working Directory in Docker
-      run: docker exec php_apache sh -c "pwd"
+      run: cp -r ../simple-login ../docker-setup/project/
 
     - name: Docker PHP Apache and Running Symfony Basic Test
       run: docker exec php_apache bash -c " cd simple-login &&  sh ./bin/git-workflow-symfony-basic.sh"
