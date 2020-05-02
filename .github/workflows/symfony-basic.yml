@@ -27,7 +27,7 @@ jobs:
       run: git clone https://github.com/akshay-achar/docker-setup.git && cd docker-setup && docker build . --file Dockerfile --tag my-image-name:$(date +%s) && mkdir project && mkdir mongo_dump && mkdir mysql_dump && docker-compose up -d && docker ps  
 
     - name: Docker PHP Apache BASH
-      run: docker exec -it php_apache bash
+      run: docker exec php_apache bash && cd simple-login
 
     # Runs a single command using the runners shell
     - name: Update the Parameters
