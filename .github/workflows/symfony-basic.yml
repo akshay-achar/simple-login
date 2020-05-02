@@ -22,9 +22,15 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
+    - name: Print the Current Working Directory
+      run: pwd
+
   # Runs a single command using the runners shell
     - name: Docker Setup
-      run: git clone https://github.com/akshay-achar/docker-setup.git && cd docker-setup && docker build . --file Dockerfile --tag my-image-name:$(date +%s) && mkdir project && mkdir mongo_dump && mkdir mysql_dump && docker-compose up -d && docker ps  
+      run: cd ~ && git clone https://github.com/akshay-achar/docker-setup.git && cd docker-setup && docker build . --file Dockerfile --tag my-image-name:$(date +%s) && mkdir project && mkdir mongo_dump && mkdir mysql_dump && docker-compose up -d && docker ps
+
+    - name: Copy the Project into the Docker Project Folder
+      run: cd ~ && cp -r ~/simple-login docker-setup/project/
 
       # Runs a single command using the runners shell
     - name: Update the Parameters
