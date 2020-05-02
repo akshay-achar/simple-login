@@ -7,6 +7,8 @@ composer install
 ./bin/console cache:clear;
 ./bin/console cache:clear --env=prod
 
+cat .env.local
+
 # Database Creation
 bin/console doctrine:database:create
 
@@ -15,3 +17,8 @@ bin/console doctrine:database:create
 
 # Doctrine Cache Clear Result
 ./bin/console doctrine:cache:clear-result
+
+cat .env.test
+
+# PHP Unit Test Running
+./bin/phpunit
