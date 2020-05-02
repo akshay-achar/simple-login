@@ -35,3 +35,14 @@ jobs:
       run: |
         ./bin/console cache:clear;
         ./bin/console cache:clear --env=prod
+
+    # Runs a set of commands using the runners shell
+    - name: Run a Symfony Doctrine Schema Update
+      run: ./bin/console doctrine:schema:update --dump-sql --force 
+
+    # Runs a set of commands using the runners shell
+    - name: Run a Symfony Doctrine Schema Cache Clear Result
+      run: ./bin/console doctrine:cache:clear-result
+
+
+
