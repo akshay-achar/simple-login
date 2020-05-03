@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-sm bg-light navbar-light navbar-sub">
+
+    <div class="container">
+        <ul class="navbar-nav sub">
+            <li class="nav-item">
+                <a class="nav-link sub-active" href="#"><i class="fas fa-columns fa-lg"></i> Dashboard </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-exchange-alt fa-lg"></i> Customers </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-wallet fa-lg"></i> Products </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-briefcase fa-lg"></i> Orders </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-cog fa-lg"></i> CRM Users </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-cog fa-lg"></i> Delivery Partners </a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-user flat-shadow"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-profile">
+                    <li class="dropdown-header">Account Details</li>
+                    <li>
+                        <div class="media">
+
+                            <div class="media-body">
+                                <h5 class="media-heading">{{ app.user.email }}</h5>
+                            </div>
+                        </div><!-- /.media -->
+                    </li>
+                    <li> <a href="{{ path('admin_logout') }}"><i class="fa fa-sign-out"></i>
+                            <span>Logout</span></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+

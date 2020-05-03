@@ -24,34 +24,12 @@ jobs:
 
   # Runs a single command using the runners shell
     - name: Docker Setup
-      run: git clone https://github.com/akshay-achar/docker-setup.git && cd docker-setup && docker build . --file Dockerfile --tag my-image-name:$(date +%s) && mkdir project && mkdir mongo_dump && mkdir mysql_dump && docker-compose up -d && docker ps  
+      run: cd .. && git clone https://github.com/akshay-achar/docker-setup.git && cd docker-setup && docker build . --file Dockerfile --tag my-image-name:$(date +%s) && mkdir project && mkdir mongo_dump && mkdir mysql_dump && docker-compose up -d && docker ps
 
-    # Runs a single command using the runners shell
-    - name: Update the Parameters 
-      run: sh bin/git-workflow-parameters-update.sh 
+    - name: Copy the Project into the Docker Project Folder
+      run: cp -r ../simple-login ../docker-setup/project/
 
-    # Runs a single command using the runners shell
-    - name: Run a Composer Install
-      run: composer install 
-
-    # Runs a set of commands using the runners shell
-    - name: Run a Symfony Cache Clear
-      run: |
-        ./bin/console cache:clear;
-        ./bin/console cache:clear --env=prod
-
-    # Runs a single command using the runners shell
-    - name: Database Creation 
-      run: bin/console doctrine:database:create 
-
-
-    # Runs a set of commands using the runners shell
-    - name: Run a Symfony Doctrine Schema Update
-      run: ./bin/console doctrine:schema:update --dump-sql --force 
-
-    # Runs a set of commands using the runners shell
-    - name: Run a Symfony Doctrine Schema Cache Clear Result
-      run: ./bin/console doctrine:cache:clear-result
-
+    - name: Docker PHP Apache and Running Symfony Basic Test
+      run: docker exec php_apache bash -c " cd simple-login &&  sh ./bin/git-workflow-symfony-basic.sh"
 
 
