@@ -22,12 +22,14 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Runs a single command using the runners shell
-    - name: Run a Composer Install
-      run: composer install 
+  # Runs a single command using the runners shell
+    - name: Docker Setup
+      run: cd .. && git clone https://github.com/akshay-achar/docker-setup.git && cd docker-setup && docker build . --file Dockerfile --tag my-image-name:$(date +%s) && mkdir project && mkdir mongo_dump && mkdir mysql_dump && docker-compose up -d && docker ps
 
-    # Runs a set of commands using the runners shell
-    - name: Run a Symfony Cache Clear
-      run: |
-        ./bin/console cache:clear;
-        ./bin/console cache:clear --env=prod
+    - name: Copy the Project into the Docker Project Folder
+      run: cp -r ../simple-login ../docker-setup/project/
+
+    - name: Docker PHP Apache and Running Symfony Basic Test
+      run: docker exec php_apache bash -c " cd simple-login &&  sh ./bin/git-workflow-symfony-basic.sh"
+
+
