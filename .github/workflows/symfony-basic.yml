@@ -28,7 +28,7 @@ jobs:
 
       # Runs a single command using the runners shell
     - name: Update the Parameters
-      run: sh bin/git-workflow-parameters-update.sh && cat .env.local
+      run: cp .env .env.local && sh bin/git-workflow-parameters-update.sh && cat .env.local
 
     - name: Copy the Project into the Docker Project Folder
       run: cp -r ../simple-login ../docker-setup/project/
