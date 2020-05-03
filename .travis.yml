@@ -13,7 +13,7 @@ before_install:
 
   - |
     # Moving the Simple Login project into the docker project folder
-    cp -r ../simple-login ../docker-setup/project/
+    ls && cp -r ../simple-login ../docker-setup/project/
 
   - |
     # Execute the Symfony Basic Setup Tests
