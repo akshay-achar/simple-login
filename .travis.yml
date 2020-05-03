@@ -23,4 +23,9 @@ install:
 script:
   - |
     # Running the PHP Unit Testing
-    ls && docker exec php_apache bash -c " cd simple-login &&  composer require --dev symfony/phpunit-bridge && ./bin/phpunit "
+    docker exec php_apache bash -c " cd simple-login &&  composer require --dev symfony/phpunit-bridge && ./bin/phpunit "
+
+after_script:
+  - |
+    # Docker Compose Down
+    docker-compose down
