@@ -5,7 +5,7 @@ dist: xenial
 before_install:
   - |
     # Clone the Docker Setup from Github
-    git clone https://github.com/akshay-achar/docker-setup.git
+    cd .. && git clone https://github.com/akshay-achar/docker-setup.git
 
   - |
     # Docker Setup
