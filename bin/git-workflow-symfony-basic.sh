@@ -9,8 +9,6 @@ composer install
 
 sleep 30;
 
-cat .env.local
-
 # Database Creation
 bin/console doctrine:database:create
 
@@ -25,9 +23,6 @@ APP_SECRET='$ecretf0rt3st'
 SYMFONY_DEPRECATIONS_HELPER=999999
 PANTHER_APP_ENV=panther
 DATABASE_URL=mysql://root:root123@mysql_docker/auth?serverVersion=5.7 " > .env.test
-
-
-cat .env.test
 
 # PHP Unit Test Running
 composer require --dev symfony/phpunit-bridge && ./bin/phpunit

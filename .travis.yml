@@ -15,6 +15,12 @@ before_install:
     # Moving the Simple Login project into the docker project folder
     cp -r ../simple-login ../docker-setup/project/
 
+install:
   - |
-    # Execute the Symfony Basic Setup Tests
+    # Docker PHP Apache and Running Symfony Basic Test
     docker exec php_apache bash -c " cd simple-login &&  sh ./bin/git-workflow-symfony-basic.sh"
+
+script:
+  - |
+    # Running the PHP Unit Testing
+    docker exec php_apache bash -c " cd simple-login &&  composer require --dev symfony/phpunit-bridge && ./bin/phpunit "
