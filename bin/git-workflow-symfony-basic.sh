@@ -16,7 +16,12 @@ bin/console doctrine:database:create
 # Doctrine Cache Clear Result
 ./bin/console doctrine:cache:clear-result
 
-cp .env .env.test
+echo "KERNEL_CLASS='App\Kernel'
+APP_SECRET='$ecretf0rt3st'
+SYMFONY_DEPRECATIONS_HELPER=999999
+PANTHER_APP_ENV=panther
+DATABASE_URL=mysql://root:root123@mysql_docker/auth?serverVersion=5.7 " > .env.test
+
 
 # PHP Unit Test Running
 composer require --dev symfony/phpunit-bridge && ./bin/phpunit
