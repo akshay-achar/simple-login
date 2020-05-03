@@ -1,7 +1,20 @@
 language: php
-php:
-  - 7.2
-jobs:
-  include:
-    - php: 7.2
-  
+
+dist: xenial
+
+before_install:
+  - |
+    # Clone the Docker Setup from Github
+    git clone https://github.com/akshay-achar/docker-setup.git
+
+  - |
+    # Docker Setup
+    cd docker-setup && docker build . --file Dockerfile --tag my-image-name:$(date +%s) && mkdir project && mkdir mongo_dump && mkdir mysql_dump && docker-compose up -d && docker ps
+
+  - |
+    # Moving the Simple Login project into the docker project folder
+    cp -r ../simple-login ../docker-setup/project/
+
+  - |
+    # Execute the Symfony Basic Setup Tests
+    docker exec php_apache bash -c " cd simple-login &&  sh ./bin/git-workflow-symfony-basic.sh"
